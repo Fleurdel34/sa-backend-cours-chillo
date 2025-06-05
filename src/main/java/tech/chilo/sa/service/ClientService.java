@@ -5,6 +5,7 @@ import tech.chilo.sa.entities.Client;
 import tech.chilo.sa.repository.ClientRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClientService {
@@ -27,5 +28,10 @@ public class ClientService {
     public List<Client> rechercher(){
         return this.clientRepository.findAll();
 
+    }
+
+    public Client lire(int id) {
+        Optional<Client> optionalClient = this.clientRepository.findById(id);
+        return optionalClient.orElse(null);
     }
 }
