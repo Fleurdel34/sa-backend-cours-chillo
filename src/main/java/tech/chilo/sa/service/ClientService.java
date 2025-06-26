@@ -34,4 +34,8 @@ public class ClientService {
         Optional<Client> optionalClient = this.clientRepository.findById(id);
         return optionalClient.orElse(null);
     }
+
+    public Client lireOuCreer(Client clientAcreer) {
+
+    }
 }
