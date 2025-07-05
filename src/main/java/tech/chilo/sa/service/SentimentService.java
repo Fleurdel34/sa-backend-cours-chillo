@@ -5,6 +5,8 @@ import tech.chilo.sa.entities.Client;
 import tech.chilo.sa.entities.Sentiment;
 import tech.chilo.sa.repository.SentimentRepository;
 
+import java.util.List;
+
 @Service
 public class SentimentService {
 
@@ -19,7 +21,16 @@ public class SentimentService {
     public void creer(Sentiment sentiment){
 
         Client client = this.clientService.lireOuCreer(sentiment.getClient());
+        sentiment.setClient(client);
         this.sentimentRepository.save(sentiment);
 
+    }
+
+    public List<Sentiment> rechercher() {
+        return this.sentimentRepository.findAll();
+    }
+
+    public void supprimer(int id) {
+        this.sentimentRepository
     }
 }

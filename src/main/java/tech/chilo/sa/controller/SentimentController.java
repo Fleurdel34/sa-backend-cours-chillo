@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import tech.chilo.sa.entities.Sentiment;
 import tech.chilo.sa.service.SentimentService;
 
+import java.util.List;
+
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
@@ -22,5 +24,15 @@ public class SentimentController {
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
     public void creer(@RequestBody Sentiment sentiment){
         this.sentimentService.creer(sentiment);
+    }
+
+    @GetMapping
+    public @ResponseBody List<Sentiment> rechercher(){
+       return this.sentimentService.rechercher();
+    }
+
+    @DeleteMapping(path="{id}")
+    public void supprimer(@PathVariable int id){
+        this.sentimentService.supprimer(id);
     }
 }
