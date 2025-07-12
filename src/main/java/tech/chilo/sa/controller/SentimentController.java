@@ -4,6 +4,7 @@ package tech.chilo.sa.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import tech.chilo.sa.entities.Sentiment;
+import tech.chilo.sa.enums.TypeSentiment;
 import tech.chilo.sa.service.SentimentService;
 
 import java.util.List;
@@ -27,10 +28,11 @@ public class SentimentController {
     }
 
     @GetMapping
-    public @ResponseBody List<Sentiment> rechercher(){
-       return this.sentimentService.rechercher();
+    public @ResponseBody List<Sentiment> rechercher(@RequestParam(required=false) TypeSentiment type){
+       return this.sentimentService.rechercher(type);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping(path="{id}")
     public void supprimer(@PathVariable int id){
         this.sentimentService.supprimer(id);
