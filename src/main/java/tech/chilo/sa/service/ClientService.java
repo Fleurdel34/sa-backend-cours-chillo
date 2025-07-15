@@ -44,4 +44,14 @@ public class ClientService {
 
         return clientDansLaBDD;
     }
+
+    public void modifier(int id, Client client) {
+        Client clientDansLaBDD = this.lire(id);
+        if(clientDansLaBDD.getId() == client.getId()) {
+            clientDansLaBDD.setEmail(client.getEmail());
+            clientDansLaBDD.setTelephone(client.getTelephone());
+        }
+        this.clientRepository.save(clientDansLaBDD);
+
+    }
 }
